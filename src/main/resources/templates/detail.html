@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cs" xml:lang="cs"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../static/css/styles.css"
+          th:href="@{'/css/styles.css'}"/>
+    <link rel="icon" href="../static/images/favicon.png"
+          th:href="@{'/images/favicon.png'}"/>
+    <title>Výchozí webová stránka | Java 2</title>
+</head>
+<body>
+    <div class="page">
+
+        <h1>Detail of Contact</h1>
+
+        <form method="post">
+
+            <table>
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td>
+                        <input type="text" id="name" name="name"
+                               value="Iron man"
+                               th:value="${contact.getName()}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="phoneNumber">Phone number:</label></td>
+                    <td>
+                        <input type="text" id="phoneNumber" name="phoneNumber"
+                               value="+420 737 111 222"
+                               th:value="${contact.getPhoneNumber()}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td>
+                        <input type="text" id="email" name="email"
+                               value="iron.man@marvel.org"
+                               th:value="${contact.getEmail()}">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Save" class="button">
+                        <a th:href="@{'/contact-list'}" href="contact-list.html"
+                           class="button">Back</a>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+        
+    </div>
+</body>
+</html>

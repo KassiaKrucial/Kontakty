@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cs" xml:lang="cs"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../static/css/styles.css"
+          th:href="@{'/css/styles.css'}"/>
+    <link rel="icon" href="../static/images/favicon.png"
+          th:href="@{'/images/favicon.png'}"/>
+    <title>Výchozí webová stránka | Java 2</title>
+</head>
+<body>
+    <div class="page">
+
+        <h1>List of Contacts</h1>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+            <tr th:each="oneContact : ${contacts}">
+                <td th:text="${oneContact.getId()}">000</td>
+                <td th:text="${oneContact.getName()}">Thomas Alva Edison</td>
+                <td th:text="${oneContact.getPhoneNumber()}">+1-123-555-666</td>
+                <td th:text="${oneContact.getEmail()}">thomas@edison.com</td>
+                <td>
+                    <a th:href="@{'/detail/' + ${oneContact.getId()}}"
+                       href="detail.html" class="button">Edit</a>
+                    <form th:action="@{'/contact-list/' + ${oneContact.getId()}}"
+                          method="post">
+                        <input type="hidden" name="method" value="DELETE">
+                        <input type="submit" class="button" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            <tr th:remove="all">
+                <td>001</td>
+                <td>Albert Einstein</td>
+                <td>+41 953-555-666</td>
+                <td>albert.einstein@cern.ch</td>
+                <td>
+                    <a href="detail.html">Edit</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <a th:href="@{'/new-contact'}" href="detail.html" class="button">
+                        Create new contact
+                    </a>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</body>
+</html>
